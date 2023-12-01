@@ -1,8 +1,8 @@
 <?php
 $host = '127.0.0.1';
-$db = 'BTTH01_CSE485_EX';
+$db = 'BTTH01_CSE485';
 $user = 'root';
-$pass = '1234';
+$pass = '12345678';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
@@ -11,7 +11,8 @@ $options = [
  PDO::ATTR_EMULATE_PREPARES => false,
 ];
 try {
- $pdo = new PDO($dsn, $user, $pass, $options);
+ $pdo = new PDO($dsn, $user, $pass);
 } catch (\PDOException $e) {
     echo $e->getMessage();
 }
+?>

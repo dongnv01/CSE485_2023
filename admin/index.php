@@ -1,12 +1,12 @@
-<?php
-include("auth.php");
-include("detail.php");
-$numberOfUsers = getNumberOfUsers($pdo);
-$numberOfCategories = getNumberOfCategories($pdo);
-$numberOfAuthors = getNumberOfAuthors($pdo);
-$numberOfArticles = getNumberOfArticles($pdo);
+<?php require "connect.php"; ?>
+<?php 
+    function tk($a){
+        global $pdo;
+        $sql = "select * from ".$a;
+        $stm = $pdo->query($sql);
+        return $stm->rowCount();
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,7 @@ $numberOfArticles = getNumberOfArticles($pdo);
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" aria-current="page" href="index.php">Trang chủ</a>
+                        <a class="nav-link active fw-bold" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
@@ -62,7 +62,7 @@ $numberOfArticles = getNumberOfArticles($pdo);
                         </h5>
 
                         <h5 class="h1 text-center">
-                        <?php echo $numberOfUsers; ?>
+                            <?= tk("Users");?>
                         </h5>
                     </div>
                 </div>
@@ -72,11 +72,11 @@ $numberOfArticles = getNumberOfArticles($pdo);
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="category.php" class="text-decoration-none">Thể loại</a>
+                            <a href="" class="text-decoration-none">Thể loại</a>
                         </h5>
 
                         <h5 class="h1 text-center">
-                        <?php echo $numberOfCategories; ?>
+                        <?= tk("theloai");?>
                         </h5>
                     </div>
                 </div>
@@ -86,11 +86,11 @@ $numberOfArticles = getNumberOfArticles($pdo);
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="author.php" class="text-decoration-none">Tác giả</a>
+                            <a href="" class="text-decoration-none">Tác giả</a>
                         </h5>
 
                         <h5 class="h1 text-center">
-                        <?php echo $numberOfAuthors; ?>
+                        <?= tk("tacgia");?>
                         </h5>
                     </div>
                 </div>
@@ -100,11 +100,11 @@ $numberOfArticles = getNumberOfArticles($pdo);
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="article.php" class="text-decoration-none">Bài viết</a>
+                            <a href="" class="text-decoration-none">Bài viết</a>
                         </h5>
 
                         <h5 class="h1 text-center">
-                        <?php echo $numberOfArticles; ?>
+                            <?= tk("baiviet");?>
                         </h5>
                     </div>
                 </div>
