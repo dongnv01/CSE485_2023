@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Kiểm tra xem có thông báo lỗi hay không
+if (isset($_SESSION["login_error"])) {
+    $error_message = $_SESSION["login_error"];
+    // Xóa biến session sau khi đã sử dụng
+    unset($_SESSION["login_error"]);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +72,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="process_login.php" method="POST">
+                    <form id="login-form" action="process_login.php" method="POST">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
                             <input type="text" class="form-control" name="username" placeholder="username">
@@ -70,16 +82,31 @@
                             <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
                             <input type="password" class="form-control" name="password" placeholder="password">
                         </div>
+                        <!-- Hiển thị thông báo lỗi nếu có -->
+                        <div id="error-message" 
+                            class="alert alert-danger <?php echo isset($error_message) ? 'show' : 'hide'; ?>">
+                            <?php echo isset($error_message) ? $error_message : ""; ?>
+                        </div>
 
                         <div class="row align-items-center remember">
                             <input type="checkbox">Remember Me
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="dangnhap" value="Login" class="btn float-end login_btn">
+                            <input type="submit" id="submitButton" name="submit" value="Login"
+                                class="btn float-end login_btn">
                         </div>
+
+                        <!-- <script>
+                            const submitButton = document.getElementById('submitButton');
+                            const myDiv = document.getElementById('error-message');
+
+                            submitButton.addEventListener('click', function () {
+                                myDiv.style.display = 'block';
+                            });
+                        </script> -->
                     </form>
 
-                    
+
 
                 </div>
                 <div class="card-footer">
